@@ -1,0 +1,6 @@
+AllCops:
+  NewCops: enable
+  Exclude:
+    - 'spec/spec_helper.rb'
+Naming/FileName:
+  Enabled: false
