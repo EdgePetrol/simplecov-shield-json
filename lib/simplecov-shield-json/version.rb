@@ -3,7 +3,7 @@
 module SimpleCov
   module Formatter
     class ShieldJSONFormatter
-      VERSION = '0.0.5'
+      VERSION = '0.0.6'
     end
   end
 end
