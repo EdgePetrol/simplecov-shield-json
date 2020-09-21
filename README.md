@@ -1,5 +1,5 @@
 [![EdgePetrol](https://circleci.com/gh/EdgePetrol/simplecov-shield-json.svg?style=shield)](https://app.circleci.com/pipelines/github/EdgePetrol/simplecov-shield-json)
-![EdgePetrol](https://img.shields.io/endpoint?url=https://edgepetrol.github.io/coverage/simplecov-shield-json/master/shield-coverage.json)
+![EdgePetrol](https://github.com/EdgePetrol/coverage/blob/master/simplecov-shield-json/master/badge.svg)
 
 # simplecov-shield-json
 
@@ -18,15 +18,4 @@ Shield JSON formatter for the ruby 1.9+ code coverage gem SimpleCov
 
 ## Result
 
-Generated JSON can be found in coverage/shield-coverage.json
-
-The format you can expect is:
-```
-        {
-          "schemaVersion": 1,
-          "label": "Coverage",
-          "message": "99.9%",
-          "color": "green",
-          "cacheSeconds": 1800
-        }
-```
+Generated badge svg can be found in coverage/badge.svg

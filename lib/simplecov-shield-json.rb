@@ -2,6 +2,7 @@
 
 require 'simplecov'
 require 'json'
+require 'open-uri'
 require_relative 'simplecov-shield-json/version'
 
 module SimpleCov
@@ -9,21 +10,21 @@ module SimpleCov
     # shield json generator
     class ShieldJSONFormatter
       def format(result)
-        json = shield_json(result)
+        shield_url = shield_json(result)
 
         File.open(output_filepath, 'w+') do |file|
-          file.puts json
+          file.puts URI.open(shield_url).read
         end
 
         puts output_message(result)
 
-        json
+        shield_url
       end
 
       private
 
       def output_filename
-        'shield-coverage.json'
+        'badge.svg'
       end
 
       def output_filepath
@@ -51,13 +52,7 @@ module SimpleCov
       end
 
       def shield_json(result)
-        {
-          schemaVersion: 1,
-          label: 'Coverage',
-          message: "#{result.covered_percent.round(2)}%",
-          color: color(result.covered_percent),
-          cacheSeconds: 1800
-        }.to_json
+        "https://img.shields.io/badge/Coverage-#{result.covered_percent.round(2)}#{CGI.escape('%')}-#{color(result.covered_percent)}.svg"
       end
     end
   end

@@ -5,6 +5,9 @@ require File.expand_path('../spec_helper', __dir__)
 
 # rubocop:disable Metrics/BlockLength
 describe SimpleCov::Formatter::ShieldJSONFormatter do
+  before do
+    allow(URI).to receive_message_chain(:open, :read).and_return('<svg></svg>')
+  end
   shared_examples 'percentage color' do |percentage, color|
     context 'generating report' do
       before do
@@ -13,13 +16,7 @@ describe SimpleCov::Formatter::ShieldJSONFormatter do
 
       it "with #{percentage} should return #{color}" do
         expect(described_class.new.format(simplecov_result)).to eq(
-          {
-            'schemaVersion': 1,
-            'label': 'Coverage',
-            'message': "#{percentage}%",
-            'color': color,
-            'cacheSeconds': 1800
-          }.to_json
+          "https://img.shields.io/badge/Coverage-#{percentage}#{CGI.escape('%')}-#{color}.svg"
         )
       end
     end
